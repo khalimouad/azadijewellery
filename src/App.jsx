@@ -31,6 +31,7 @@ export default function App() {
     return () => observer.disconnect();
   }, [filter]);
   useEffect(() => { const close = (event) => { if (event.key === 'Escape') { setActive(null); setMenu(false); } }; window.addEventListener('keydown', close); return () => window.removeEventListener('keydown', close); }, []);
+  useEffect(() => { document.body.classList.toggle('menu-open', menu); return () => document.body.classList.remove('menu-open'); }, [menu]);
   const toggle = (id) => setShortlist((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
 
   return <>
